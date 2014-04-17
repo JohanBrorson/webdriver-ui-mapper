@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.spotify.qa</groupId>
+	<artifactId>ta-ui-mapper</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+	<name>UI Mapper</name>
+	<url>http://www.spotify.com</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<output_directory>target</output_directory>
+		    <sonar.host.url>https://sonar.spotify.net</sonar.host.url>
+    <sonar.jdbc.url>jdbc:postgresql://real.sonar.spotify.net/sonardb</sonar.jdbc.url>
+    <sonar.jdbc.username>sonaruser</sonar.jdbc.username>
+    <sonar.jdbc.password>Aecausuupaijahshae2re6ie</sonar.jdbc.password>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>spotify-maven-repository</id>
+			<url>https://maven.spotify.net/maven</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>spotify-maven-upload</id>
+			<url>scpexe://maven.spotify.net/var/lib/maven/repository</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<directory>${output_directory}</directory>
+		<outputDirectory>${output_directory}/classes</outputDirectory>
+		<testOutputDirectory>${output_directory}/test-classes</testOutputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8.7</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+	</dependencies>
+
+</project>
