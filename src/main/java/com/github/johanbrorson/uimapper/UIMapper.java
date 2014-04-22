@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 public class UIMapper {
   private final ObjectMapper mapper = new ObjectMapper();
@@ -18,7 +19,7 @@ public class UIMapper {
     this.json = json;
   }
 
-  public Locator getLocator(String name) throws JsonParseException, JsonMappingException, IOException {
+  public Locator getLocator(String name) throws JsonParseException, JsonMappingException, IOException, LocatorNotFoundException {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(json);
     jsonParser.nextToken(); // Advance stream to START_ARRAY
@@ -29,7 +30,7 @@ public class UIMapper {
       }
     }
 
-    throw new RuntimeException("name not found");
+    throw new LocatorNotFoundException("The locator " + name + " was not found");
   }
 
 }

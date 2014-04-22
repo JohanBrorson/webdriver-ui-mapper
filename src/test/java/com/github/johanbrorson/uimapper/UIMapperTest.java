@@ -3,10 +3,10 @@ package com.github.johanbrorson.uimapper;
 import java.io.File;
 import java.io.IOException;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.github.johanbrorson.uimapper.Locator;
 import com.github.johanbrorson.uimapper.UIMapper;
 import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
+import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -24,7 +24,7 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testGetLocator() throws JsonParseException, IOException {
+  public void testGetLocator() throws JsonParseException, IOException, LocatorNotFoundException {
     Locator locator = map.getLocator("username");
     Assert.assertEquals("username", locator.getName());
     Assert.assertEquals(Locator.Method.ID, locator.getMethod());
@@ -32,13 +32,13 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testGetBy() throws JsonParseException, IOException, IllegalMethodException {
+  public void testGetBy() throws JsonParseException, IOException, IllegalMethodException, LocatorNotFoundException {
     Locator locator = map.getLocator("loginButton");
     Assert.assertEquals(By.xpath("//button[@type='submit']"), locator.getBy());
   }
 
-  @Test(expectedExceptions = InvalidFormatException.class)
-  public void testIllegalMethod() throws JsonParseException, IOException, IllegalMethodException {
-    map.getLocator("illegalMethod");
+  @Test(expectedExceptions = LocatorNotFoundException.class)
+  public void testLocatorNotFound() throws JsonParseException, IOException, IllegalMethodException, LocatorNotFoundException {
+    map.getLocator("locatorThatDoesntExist");
   }
 }
