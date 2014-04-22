@@ -13,10 +13,5 @@
     "name": "loginButton",
     "selector": "//button[@type='submit']",
     "method": "XPATH"
-  },
-  {
-    "name": "illegalMethod",
-    "selector": "//button[@type='submit']",
-    "method": "ILLEGAL"
   }
 ]
