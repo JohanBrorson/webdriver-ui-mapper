@@ -1,17 +1,32 @@
 [
   {
-    "name": "username",
-    "selector": "login-usr",
+    "name": "validId",
+    "selector": "valid-id",
     "method": "ID"
   },
   {
-    "name": "password",
-    "selector": "login-pass",
-    "method": "ID"
-  },
-  {
-    "name": "loginButton",
+    "name": "validXpath",
     "selector": "//button[@type='submit']",
+    "method": "XPATH"
+  },
+  {
+    "name": "validClassName",
+    "selector": "valid-class",
+    "method": "CLASS_NAME"
+  },
+  {
+    "name": "validCssSelector",
+    "selector": "#valid-id",
+    "method": "CSS_SELECTOR"
+  },
+  {
+    "name": "invalidId",
+    "selector": "login usr",
+    "method": "ID"
+  },
+  {
+    "name": "invalidXpath",
+    "selector": "//button[@type='submit'",
     "method": "XPATH"
   }
 ]

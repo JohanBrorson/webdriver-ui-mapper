@@ -2,6 +2,12 @@ package com.github.johanbrorson.uimapper;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.openqa.selenium.By;
 
@@ -23,7 +29,7 @@ public class Locator {
   private final Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
   public enum Method {
-    CSS, ID, XPATH
+    CLASS_NAME, CSS_SELECTOR, ID, LINK_TEXT, NAME, PARTIAL_LINK_TEXT, TAG_NAME, XPATH
   }
 
   @JsonProperty("name")
@@ -68,14 +74,49 @@ public class Locator {
 
   public By getBy() throws IllegalMethodException {
     switch (method) {
-      case CSS:
+      case CLASS_NAME:
+        return By.className(selector);
+      case CSS_SELECTOR:
         return By.cssSelector(selector);
       case ID:
         return By.id(selector);
+      case LINK_TEXT:
+        return By.linkText(selector);
+      case NAME:
+        return By.name(selector);
+      case PARTIAL_LINK_TEXT:
+        return By.partialLinkText(selector);
+      case TAG_NAME:
+        return By.tagName(selector);
       case XPATH:
         return By.xpath(selector);
       default:
         throw new IllegalMethodException();
     }
   }
+
+  public boolean hasValidSelector() {
+    if (selector == null || selector.isEmpty()) {
+      return false;
+    }
+
+    switch (method) {
+      case ID:
+        Pattern pattern = Pattern.compile("\\s");
+        Matcher matcher = pattern.matcher(selector);
+        return !matcher.find();
+      case XPATH:
+        XPathFactory factory = XPathFactory.newInstance();
+        XPath xpath = factory.newXPath();
+        try {
+          xpath.compile(selector);
+        } catch (XPathExpressionException e) {
+          return false;
+        }
+        return true;
+      default:
+        return true;
+    }
+  }
+
 }
