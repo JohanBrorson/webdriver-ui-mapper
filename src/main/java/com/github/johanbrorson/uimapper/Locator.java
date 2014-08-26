@@ -95,6 +95,11 @@ public class Locator {
     }
   }
 
+  /**
+   * Checks if the selector is valid
+   *
+   * @return <code>true</code> if the selector is valid, otherwise <code>false</code>
+   */
   public boolean hasValidSelector() {
     if (selector == null || selector.isEmpty()) {
       return false;

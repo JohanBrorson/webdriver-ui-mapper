@@ -2,12 +2,13 @@ package com.github.johanbrorson.uimapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
@@ -19,7 +20,7 @@ public class UIMapper {
     this.json = json;
   }
 
-  public Locator getLocator(String name) throws JsonParseException, JsonMappingException, IOException, LocatorNotFoundException {
+  public Locator getLocator(String name) throws JsonParseException, IOException, LocatorNotFoundException {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(json);
     jsonParser.nextToken(); // Advance stream to START_ARRAY
@@ -31,6 +32,19 @@ public class UIMapper {
     }
 
     throw new LocatorNotFoundException("The locator " + name + " was not found");
+  }
+
+  public List<Locator> getLocators() throws JsonParseException, IOException {
+    List<Locator> locators = new ArrayList<Locator>();
+    JsonFactory jsonFactory = new JsonFactory();
+    JsonParser jsonParser = jsonFactory.createParser(json);
+    jsonParser.nextToken(); // Advance stream to START_ARRAY
+    while (jsonParser.nextToken() == JsonToken.START_OBJECT) {
+      Locator locator = mapper.readValue(jsonParser, Locator.class);
+      locators.add(locator);
+    }
+
+    return locators;
   }
 
 }
