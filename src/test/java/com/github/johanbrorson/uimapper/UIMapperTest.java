@@ -1,26 +1,21 @@
 package com.github.johanbrorson.uimapper;
 
-import java.io.File;
 import java.io.IOException;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.github.johanbrorson.uimapper.Locator;
 import com.github.johanbrorson.uimapper.UIMapper;
+import com.github.johanbrorson.uimapper.annotation.LocatorFile;
 import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
 import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@LocatorFile(filePath = "src/test/resources/testPage.json")
 public class UIMapperTest {
-  private UIMapper map;
-
-  @BeforeClass
-  public void setUp() {
-    File json = new File("src/test/resources/testPage.json");
-    map = new UIMapper(json);
-  }
+  private final UIMapper map = new UIMapper(UIMapperTest.class);
 
   @Test
   public void testGetMethod() throws JsonParseException, IOException, LocatorNotFoundException {
