@@ -101,27 +101,43 @@ public class Locator {
    * @return <code>true</code> if the selector is valid, otherwise <code>false</code>
    */
   public boolean hasValidSelector() {
-    if (selector == null || selector.isEmpty()) {
-      return false;
-    }
-
     switch (method) {
       case ID:
-        Pattern pattern = Pattern.compile("\\s");
-        Matcher matcher = pattern.matcher(selector);
-        return !matcher.find();
+        return hasValidIdSelector();
       case XPATH:
-        XPathFactory factory = XPathFactory.newInstance();
-        XPath xpath = factory.newXPath();
-        try {
-          xpath.compile(selector);
-        } catch (XPathExpressionException e) {
-          return false;
-        }
-        return true;
+        return hasValidXpathSelector();
       default:
-        return true;
+        return !isSelectorNullOrEmpty();
     }
+  }
+
+  private boolean hasValidIdSelector() {
+    if (!isSelectorNullOrEmpty()) {
+      Pattern pattern = Pattern.compile("\\s");
+      Matcher matcher = pattern.matcher(selector);
+      return !matcher.find();
+    } else {
+      return false;
+    }
+  }
+
+  private boolean hasValidXpathSelector() {
+    if (!isSelectorNullOrEmpty()) {
+      XPathFactory factory = XPathFactory.newInstance();
+      XPath xpath = factory.newXPath();
+      try {
+        xpath.compile(selector);
+      } catch (XPathExpressionException e) {
+        return false;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean isSelectorNullOrEmpty() {
+    return selector == null || selector.isEmpty();
   }
 
 }
