@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.johanbrorson</groupId>
-	<artifactId>ui-mapper</artifactId>
+	<artifactId>webdriver-ui-mapper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>UI Mapper</name>
+	<name>WebDriver UI Mapper</name>
 	<description>Maps JSON files with WebDriver locators to Locator java objects</description>
 	<url>https://github.com/johanbrorson/ui-mapper</url>
 
@@ -20,15 +20,15 @@
 
 	<scm>
 		<url>https://github.com/johanbrorson/ui-mapper</url>
-		<connection>scm:git:git://github.com/johanbrorson/ui-mapper.git</connection>
-		<developerConnection>scm:git:git://github.com/johanbrorson/ui-mapper.git</developerConnection>
+		<connection>scm:git:git://github.com/johanbrorson/webdriver-ui-mapper.git</connection>
+		<developerConnection>scm:git:git://github.com/johanbrorson/webdriver-ui-mapper.git</developerConnection>
 	</scm>
 
 	<developers>
 		<developer>
 			<id>johanbrorson</id>
 			<name>Johan Brorson</name>
-			<email>johan_brorson@hotmail.com</email>
+			<email>johan_brorson.at.hotmail.com</email>
 			<url>https://github.com/johanbrorson</url>
 		</developer>
 	</developers>
@@ -83,7 +83,6 @@
 			</plugin>
 
 		</plugins>
-
 	</build>
 
 	<dependencies>
