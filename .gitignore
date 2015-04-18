@@ -8,6 +8,7 @@
 *.iml
 
 # Build and unit tests
+settings.xml
 test-output/
 target/
 

@@ -2,16 +2,14 @@ package com.github.johanbrorson.uimapper;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.github.johanbrorson.uimapper.Locator;
-import com.github.johanbrorson.uimapper.UIMapper;
-import com.github.johanbrorson.uimapper.annotation.LocatorFile;
-import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
-import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
-
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.github.johanbrorson.uimapper.annotation.LocatorFile;
+import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
+import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 @LocatorFile(filePath = "src/test/resources/testPage.json")
 public class UIMapperTest {
@@ -55,6 +53,10 @@ public class UIMapperTest {
     Assert.assertTrue(map.getLocator("validXpath").hasValidSelector());
     Assert.assertTrue(map.getLocator("validClassName").hasValidSelector());
     Assert.assertTrue(map.getLocator("validCssSelector").hasValidSelector());
+  }
+
+  @Test
+  public void testHasValidSelectorWithInvalidSelectors() throws JsonParseException, IOException, LocatorNotFoundException {
     Assert.assertFalse(map.getLocator("invalidId").hasValidSelector());
     Assert.assertFalse(map.getLocator("invalidXpath").hasValidSelector());
   }
