@@ -24,7 +24,7 @@ public class UIMapper {
     this.json = json;
   }
 
-  public Locator getLocator(String name) throws IOException, LocatorNotFoundException {
+  public Locator getLocator(String name) throws IOException {
     JsonParser jsonParser = getJsonParser();
     jsonParser.nextToken();
     while (jsonParser.nextToken() == JsonToken.START_OBJECT) {

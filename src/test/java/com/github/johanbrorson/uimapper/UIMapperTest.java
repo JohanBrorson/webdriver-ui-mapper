@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.github.johanbrorson.uimapper.annotation.LocatorFile;
-import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
 import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 @LocatorFile(filePath = "src/test/resources/testPage.json")
@@ -16,7 +14,7 @@ public class UIMapperTest {
   private final UIMapper map = new UIMapper(UIMapperTest.class);
 
   @Test
-  public void testGetMethod() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testGetMethod() throws IOException {
     Assert.assertEquals(map.getLocator("validId").getMethod(), Method.ID);
     Assert.assertEquals(map.getLocator("validXpath").getMethod(), Method.XPATH);
     Assert.assertEquals(map.getLocator("validClassName").getMethod(), Method.CLASS_NAME);
@@ -24,7 +22,7 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testGetName() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testGetName() throws IOException {
     Assert.assertEquals(map.getLocator("validId").getName(), "validId");
     Assert.assertEquals(map.getLocator("validXpath").getName(), "validXpath");
     Assert.assertEquals(map.getLocator("validClassName").getName(), "validClassName");
@@ -32,7 +30,7 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testGetSelector() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testGetSelector() throws IOException {
     Assert.assertEquals(map.getLocator("validId").getSelector(), "valid-id");
     Assert.assertEquals(map.getLocator("validXpath").getSelector(), "//button[@type='submit']");
     Assert.assertEquals(map.getLocator("validClassName").getSelector(), "valid-class");
@@ -40,7 +38,7 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testGetBy() throws JsonParseException, IOException, LocatorNotFoundException, IllegalMethodException {
+  public void testGetBy() throws IOException {
     Assert.assertEquals(map.getLocator("validId").getBy(), By.id("valid-id"));
     Assert.assertEquals(map.getLocator("validXpath").getBy(), By.xpath("//button[@type='submit']"));
     Assert.assertEquals(map.getLocator("validClassName").getBy(), By.className("valid-class"));
@@ -48,7 +46,7 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testHasValidSelector() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testHasValidSelector() throws IOException {
     Assert.assertTrue(map.getLocator("validId").hasValidSelector());
     Assert.assertTrue(map.getLocator("validXpath").hasValidSelector());
     Assert.assertTrue(map.getLocator("validClassName").hasValidSelector());
@@ -56,18 +54,18 @@ public class UIMapperTest {
   }
 
   @Test
-  public void testHasValidSelectorWithInvalidSelectors() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testHasValidSelectorWithInvalidSelectors() throws IOException {
     Assert.assertFalse(map.getLocator("invalidId").hasValidSelector());
     Assert.assertFalse(map.getLocator("invalidXpath").hasValidSelector());
   }
 
   @Test(expectedExceptions = LocatorNotFoundException.class)
-  public void testLocatorNotFound() throws JsonParseException, IOException, LocatorNotFoundException {
+  public void testLocatorNotFound() throws IOException {
     map.getLocator("locatorThatDoesntExist");
   }
 
   @Test
-  public void testGetLocators() throws JsonParseException, IOException {
+  public void testGetLocators() throws IOException {
     Assert.assertEquals(map.getLocators().size(), 6);
   }
 
