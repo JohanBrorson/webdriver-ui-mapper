@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +24,7 @@ public class UIMapper {
     this.json = json;
   }
 
-  public Locator getLocator(String name) throws JsonParseException, IOException, LocatorNotFoundException {
+  public Locator getLocator(String name) throws IOException, LocatorNotFoundException {
     JsonParser jsonParser = getJsonParser();
     jsonParser.nextToken();
     while (jsonParser.nextToken() == JsonToken.START_OBJECT) {
@@ -38,7 +37,7 @@ public class UIMapper {
     throw new LocatorNotFoundException("The locator " + name + " was not found");
   }
 
-  public List<Locator> getLocators() throws JsonParseException, IOException {
+  public List<Locator> getLocators() throws IOException {
     List<Locator> locators = new ArrayList<Locator>();
     JsonParser jsonParser = getJsonParser();
     jsonParser.nextToken();
@@ -50,7 +49,7 @@ public class UIMapper {
     return locators;
   }
 
-  private JsonParser getJsonParser() throws JsonParseException, IOException {
+  private JsonParser getJsonParser() throws IOException {
     JsonFactory jsonFactory = new JsonFactory();
     return jsonFactory.createParser(json);
   }

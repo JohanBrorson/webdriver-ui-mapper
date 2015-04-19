@@ -17,10 +17,10 @@ public class UIMapperTest {
 
   @Test
   public void testGetMethod() throws JsonParseException, IOException, LocatorNotFoundException {
-    Assert.assertEquals(map.getLocator("validId").getMethod(), Locator.Method.ID);
-    Assert.assertEquals(map.getLocator("validXpath").getMethod(), Locator.Method.XPATH);
-    Assert.assertEquals(map.getLocator("validClassName").getMethod(), Locator.Method.CLASS_NAME);
-    Assert.assertEquals(map.getLocator("validCssSelector").getMethod(), Locator.Method.CSS_SELECTOR);
+    Assert.assertEquals(map.getLocator("validId").getMethod(), Method.ID);
+    Assert.assertEquals(map.getLocator("validXpath").getMethod(), Method.XPATH);
+    Assert.assertEquals(map.getLocator("validClassName").getMethod(), Method.CLASS_NAME);
+    Assert.assertEquals(map.getLocator("validCssSelector").getMethod(), Method.CSS_SELECTOR);
   }
 
   @Test
