@@ -14,14 +14,15 @@ import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 public class UIMapper {
   private final ObjectMapper mapper = new ObjectMapper();
-  private final File json;
+  private String content;
 
   public UIMapper(Class<?> clazz) {
-    this.json = new File(AnnotationHelper.getFilePathAnnotation(clazz));
+    String filePath = AnnotationHelper.getFilePathAnnotation(clazz);
+    content = LocatorFileHelper.getContent(filePath);
   }
 
   public UIMapper(File json) {
-    this.json = json;
+    content = LocatorFileHelper.getContent(json);
   }
 
   public Locator getLocator(String name) throws IOException {
@@ -51,7 +52,7 @@ public class UIMapper {
 
   private JsonParser getJsonParser() throws IOException {
     JsonFactory jsonFactory = new JsonFactory();
-    return jsonFactory.createParser(json);
+    return jsonFactory.createParser(content);
   }
 
 }
