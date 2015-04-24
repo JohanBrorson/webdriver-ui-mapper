@@ -14,6 +14,34 @@ public class UIMapperTest {
   private final UIMapper map = new UIMapper(UIMapperTest.class);
 
   @Test
+  public void testCopyLocator() throws IOException {
+    Locator original = map.getLocator("validId");
+    Locator locator = new Locator(original);
+    Assert.assertEquals(locator.getName(), original.getName());
+    Assert.assertEquals(locator.getSelector(), original.getSelector());
+    Assert.assertEquals(locator.getMethod(), original.getMethod());
+    Assert.assertEquals(locator.getAdditionalProperties(), original.getAdditionalProperties());
+  }
+
+  @Test
+  public void testEditLocatorCopy() throws IOException {
+    Locator original = map.getLocator("validId");
+    Locator locator = new Locator(original);
+
+    locator.setName("newName");
+    locator.setSelector("//div");
+    locator.setMethod(Method.XPATH);
+
+    Assert.assertEquals(locator.getName(), "newName");
+    Assert.assertEquals(locator.getSelector(), "//div");
+    Assert.assertEquals(locator.getMethod(), Method.XPATH);
+
+    Assert.assertNotEquals(locator.getName(), original.getName());
+    Assert.assertNotEquals(locator.getSelector(), original.getSelector());
+    Assert.assertNotEquals(locator.getMethod(), original.getMethod());
+  }
+
+  @Test
   public void testGetMethod() throws IOException {
     Assert.assertEquals(map.getLocator("validId").getMethod(), Method.ID);
     Assert.assertEquals(map.getLocator("validXpath").getMethod(), Method.XPATH);

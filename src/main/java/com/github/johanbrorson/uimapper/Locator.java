@@ -26,7 +26,18 @@ public class Locator {
   private String selector;
   @JsonProperty("method")
   private Method method;
-  private final Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+  public Locator() {
+
+  }
+
+  public Locator(Locator locator) {
+    this.name = locator.getName();
+    this.selector = locator.getSelector();
+    this.method = locator.getMethod();
+    this.additionalProperties = locator.getAdditionalProperties();
+  }
 
   @JsonProperty("name")
   public String getName() {
