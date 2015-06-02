@@ -3,7 +3,7 @@
 WebDriver UI Mapper is a tool that maps JSON files with WebDriver locators to Locator java objects
 
 ### Advantages of UI Maps
-* Easier maintenance by having a centralal location for UI objects instead of having them scattered throughout the tests.
+* Easier maintenance by having a central location for UI objects instead of having them scattered throughout the tests.
 * Readability can be improved by giving the selectors human-readable names.
 * Possible to reuse the locators.
 
