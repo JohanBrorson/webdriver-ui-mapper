@@ -4,7 +4,7 @@
 
 	<groupId>com.github.johanbrorson</groupId>
 	<artifactId>webdriver-ui-mapper</artifactId>
-	<version>1.3.0-SNAPSHOT</version>
+	<version>1.3.0</version>
 	<packaging>jar</packaging>
 	<name>WebDriver UI Mapper</name>
 	<description>Maps JSON files with WebDriver locators to Locator java objects</description>
