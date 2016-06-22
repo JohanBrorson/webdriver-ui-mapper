@@ -1,4 +1,4 @@
-# WebDriver UI Mapper [![Build Status](https://travis-ci.org/JohanBrorson/webdriver-ui-mapper.svg?branch=master)](https://travis-ci.org/JohanBrorson/webdriver-ui-mapper)
+# WebDriver UI Mapper [![Build Status](https://travis-ci.org/JohanBrorson/webdriver-ui-mapper.svg?branch=master)](https://travis-ci.org/JohanBrorson/webdriver-ui-mapper) [![codecov](https://codecov.io/gh/JohanBrorson/webdriver-ui-mapper/branch/master/graph/badge.svg)](https://codecov.io/gh/JohanBrorson/webdriver-ui-mapper)
 
 WebDriver UI Mapper is a tool that maps JSON files with WebDriver locators to Locator java objects
 
