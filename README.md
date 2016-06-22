@@ -7,6 +7,17 @@ WebDriver UI Mapper is a tool that maps JSON files with WebDriver locators to Lo
 * Readability can be improved by giving the selectors human-readable names.
 * Possible to reuse the locators.
 
+### Maven Dependency
+In your Maven project, add the following to your pom.xml file
+
+```xml
+    <dependency>
+      <groupId>com.github.johanbrorson</groupId>
+      <artifactId>webdriver-ui-mapper</artifactId>
+      <version>[1.3.0, 2.0)</version>
+    </dependency>
+```
+
 ### Example UI Map
 ```json
 [
