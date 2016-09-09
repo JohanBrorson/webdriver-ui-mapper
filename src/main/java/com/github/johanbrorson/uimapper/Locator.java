@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
 
 @JsonPropertyOrder({"name", "selector", "method"})
 public class Locator {
@@ -79,7 +78,7 @@ public class Locator {
     this.additionalProperties.put(name, value);
   }
 
-  public By getBy() throws IllegalMethodException {
+  public By getBy() {
     switch (method) {
       case CLASS_NAME:
         return By.className(selector);
@@ -98,7 +97,7 @@ public class Locator {
       case XPATH:
         return By.xpath(selector);
       default:
-        throw new IllegalMethodException();
+        throw new RuntimeException("Unknown method");
     }
   }
 
