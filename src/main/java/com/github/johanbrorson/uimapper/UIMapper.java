@@ -21,6 +21,11 @@ public class UIMapper {
     content = LocatorFileHelper.getContent(filePath);
   }
 
+  public UIMapper(Object object) {
+    String filePath = AnnotationHelper.getFilePathAnnotation(object.getClass());
+    content = LocatorFileHelper.getContent(filePath);
+  }
+
   public UIMapper(File json) {
     content = LocatorFileHelper.getContent(json);
   }

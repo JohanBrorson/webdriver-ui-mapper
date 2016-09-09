@@ -14,7 +14,7 @@ In your Maven project, add the following to your pom.xml file
     <dependency>
       <groupId>com.github.johanbrorson</groupId>
       <artifactId>webdriver-ui-mapper</artifactId>
-      <version>[1.3.0, 2.0)</version>
+      <version>[1.4.0-SNAPSHOT, 2.0)</version>
     </dependency>
 ```
 
@@ -40,13 +40,12 @@ In your Maven project, add the following to your pom.xml file
 public class SearchPage {
   private final UIMapper map = new UIMapper(SearchPage.class);
   private final WebDriver driver;
-  private By searchInput;
-  private By searchButton;
+  @ByLocator private By searchInput;
+  @ByLocator private By searchButton;
 
   public SearchPage(WebDriver driver) throws IOException {
     this.driver = driver;
-    searchInput = map.getLocator("searchInput").getBy();
-    searchButton = map.getLocator("searchButton").getBy();
+    ByLocatorHelper.initInstanceVariables(this);
   }
 
   public void enterSearchText(String searchText) {
