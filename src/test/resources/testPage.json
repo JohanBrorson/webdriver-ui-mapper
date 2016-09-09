@@ -10,6 +10,11 @@
     "method": "XPATH"
   },
   {
+    "name": "validTagName",
+    "selector": "a",
+    "method": "TAG_NAME"
+  },
+  {
     "name": "validClassName",
     "selector": "valid-class",
     "method": "CLASS_NAME"
@@ -18,6 +23,16 @@
     "name": "validCssSelector",
     "selector": "#valid-id",
     "method": "CSS_SELECTOR"
+  },
+  {
+    "name": "validLinkTextSelector",
+    "selector": "valid link text",
+    "method": "LINK_TEXT"
+  },
+  {
+    "name": "validPartialLinkTextSelector",
+    "selector": "valid partial",
+    "method": "PARTIAL_LINK_TEXT"
   },
   {
     "name": "invalidId",

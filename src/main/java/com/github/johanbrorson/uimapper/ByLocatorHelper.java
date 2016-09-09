@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import org.openqa.selenium.By;
 
 import com.github.johanbrorson.uimapper.annotation.AnnotationHelper;
-import com.github.johanbrorson.uimapper.exceptions.IllegalMethodException;
 import com.github.johanbrorson.uimapper.utils.ReflectionHelper;
 
 public class ByLocatorHelper {
@@ -33,7 +32,7 @@ public class ByLocatorHelper {
     }
   }
 
-  private static By getByForField(Class<?> clazz, Field field) throws IllegalMethodException, IOException {
+  private static By getByForField(Class<?> clazz, Field field) throws IOException {
     final UIMapper map = new UIMapper(clazz);
     final String name = AnnotationHelper.getByLocatorNameAnnotation(field);
     return map.getLocator(name).getBy();
