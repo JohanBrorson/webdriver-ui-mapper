@@ -38,7 +38,6 @@ In your Maven project, add the following to your pom.xml file
 ```java
 @LocatorFile(filePath = "locators/SearchPage.json")
 public class SearchPage {
-  private final UIMapper map = new UIMapper(SearchPage.class);
   private final WebDriver driver;
   @ByLocator private By searchInput;
   @ByLocator private By searchButton;

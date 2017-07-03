@@ -9,12 +9,8 @@ public class ReflectionHelper {
 
   public static Iterable<Field> getDeclaredFields(Class<?> clazz) {
     final List<Field> allFields = new ArrayList<Field>();
-
-    while (null != clazz && !clazz.equals(Object.class)) {
-      final Field[] fields = clazz.getDeclaredFields();
-      allFields.addAll(Arrays.asList(fields));
-      clazz = clazz.getSuperclass();
-    }
+    final Field[] fields = clazz.getDeclaredFields();
+    allFields.addAll(Arrays.asList(fields));
     return allFields;
   }
 
