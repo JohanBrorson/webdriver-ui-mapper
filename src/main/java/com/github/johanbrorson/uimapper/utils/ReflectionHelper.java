@@ -8,7 +8,7 @@ import java.util.List;
 public class ReflectionHelper {
 
   public static Iterable<Field> getDeclaredFields(Class<?> clazz) {
-    final List<Field> allFields = new ArrayList<Field>();
+    final List<Field> allFields = new ArrayList<>();
     final Field[] fields = clazz.getDeclaredFields();
     allFields.addAll(Arrays.asList(fields));
     return allFields;

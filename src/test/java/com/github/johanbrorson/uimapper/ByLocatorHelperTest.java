@@ -1,11 +1,11 @@
 package com.github.johanbrorson.uimapper;
 
+import com.github.johanbrorson.uimapper.annotation.ByLocator;
+import com.github.johanbrorson.uimapper.annotation.LocatorFile;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import com.github.johanbrorson.uimapper.annotation.ByLocator;
-import com.github.johanbrorson.uimapper.annotation.LocatorFile;
 
 
 public class ByLocatorHelperTest {

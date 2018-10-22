@@ -1,12 +1,12 @@
 package com.github.johanbrorson.uimapper;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
+import com.github.johanbrorson.uimapper.annotation.AnnotationHelper;
+import com.github.johanbrorson.uimapper.utils.ReflectionHelper;
 
 import org.openqa.selenium.By;
 
-import com.github.johanbrorson.uimapper.annotation.AnnotationHelper;
-import com.github.johanbrorson.uimapper.utils.ReflectionHelper;
+import java.io.IOException;
+import java.lang.reflect.Field;
 
 public class ByLocatorHelper {
 
