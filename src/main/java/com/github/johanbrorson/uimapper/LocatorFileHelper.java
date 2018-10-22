@@ -1,15 +1,15 @@
 package com.github.johanbrorson.uimapper;
 
+import com.github.johanbrorson.uimapper.exceptions.LocatorFileIOException;
+
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-
-import org.apache.commons.io.IOUtils;
-
-import com.github.johanbrorson.uimapper.exceptions.LocatorFileIOException;
 
 public class LocatorFileHelper {
 
@@ -27,7 +27,7 @@ public class LocatorFileHelper {
     try {
       return IOUtils.toString(is, StandardCharsets.UTF_8);
     } catch (IOException e) {
-      throw new LocatorFileIOException(e.getMessage());
+      throw new LocatorFileIOException(e);
     }
   }
 
@@ -46,7 +46,7 @@ public class LocatorFileHelper {
     try {
       return new FileInputStream(file);
     } catch (FileNotFoundException e) {
-      throw new LocatorFileIOException(e.getMessage());
+      throw new LocatorFileIOException(e);
     }
   }
 

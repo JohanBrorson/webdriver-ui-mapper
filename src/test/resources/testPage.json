@@ -43,5 +43,30 @@
     "name": "invalidXpath",
     "selector": "//button[@type='submit'",
     "method": "XPATH"
+  },
+  {
+    "name": "invalidTagName",
+    "selector": "",
+    "method": "TAG_NAME"
+  },
+  {
+    "name": "invalidClassName",
+    "selector": "",
+    "method": "CLASS_NAME"
+  },
+  {
+    "name": "invalidCssSelector",
+    "selector": "",
+    "method": "CSS_SELECTOR"
+  },
+  {
+    "name": "invalidLinkTextSelector",
+    "selector": "",
+    "method": "LINK_TEXT"
+  },
+  {
+    "name": "invalidPartialLinkTextSelector",
+    "selector": "",
+    "method": "PARTIAL_LINK_TEXT"
   }
 ]

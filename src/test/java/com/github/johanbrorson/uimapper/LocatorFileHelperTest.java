@@ -1,29 +1,35 @@
 package com.github.johanbrorson.uimapper;
 
-import java.io.File;
+import com.github.johanbrorson.uimapper.exceptions.LocatorFileIOException;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.github.johanbrorson.uimapper.exceptions.LocatorFileIOException;
+import java.io.File;
 
 public class LocatorFileHelperTest {
-  private final static String TEST_FILE = "src/test/resources/content-test.txt";
-  private final static String EXPECTED_CONTENT = "Line 1\nLine 2\n";
 
   @Test
   public void testGetContentFromFile() {
-    File file = new File(TEST_FILE);
-    Assert.assertEquals(LocatorFileHelper.getContent(file), EXPECTED_CONTENT);
+    final File file = new File("src/test/resources/content-from-file.txt");
+    final String expectedContent = "1\n2\n";
+    Assert.assertEquals(LocatorFileHelper.getContent(file), expectedContent);
   }
 
   @Test
   public void testGetContentFromFilePath() {
-    Assert.assertEquals(LocatorFileHelper.getContent(TEST_FILE), EXPECTED_CONTENT);
+    final String testFile = "src/test/resources/content-from-file-path.txt";
+    final String expectedContent = "A\nB\n";
+    Assert.assertEquals(LocatorFileHelper.getContent(testFile), expectedContent);
   }
 
   @Test(expectedExceptions = LocatorFileIOException.class)
-  public void testLocatorFileIOException() {
+  public void testGetContentFromNonExistingFile() {
+    LocatorFileHelper.getContent(new File("src/test/resources/file-that-doesnt-exist"));
+  }
+
+  @Test(expectedExceptions = LocatorFileIOException.class)
+  public void testGetContentFromNonExistingFilePath() {
     LocatorFileHelper.getContent("src/test/resources/file-that-doesnt-exist");
   }
 

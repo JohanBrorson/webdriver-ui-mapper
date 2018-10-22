@@ -1,13 +1,13 @@
 package com.github.johanbrorson.uimapper;
 
-import java.io.IOException;
+import com.github.johanbrorson.uimapper.annotation.LocatorFile;
+import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.github.johanbrorson.uimapper.annotation.LocatorFile;
-import com.github.johanbrorson.uimapper.exceptions.LocatorNotFoundException;
+import java.io.IOException;
 
 @LocatorFile(filePath = "src/test/resources/testPage.json")
 public class UIMapperTest {
@@ -100,6 +100,11 @@ public class UIMapperTest {
   public void testHasValidSelectorWithInvalidSelectors() throws IOException {
     Assert.assertFalse(map.getLocator("invalidId").hasValidSelector());
     Assert.assertFalse(map.getLocator("invalidXpath").hasValidSelector());
+    Assert.assertFalse(map.getLocator("invalidTagName").hasValidSelector());
+    Assert.assertFalse(map.getLocator("invalidClassName").hasValidSelector());
+    Assert.assertFalse(map.getLocator("invalidCssSelector").hasValidSelector());
+    Assert.assertFalse(map.getLocator("invalidLinkTextSelector").hasValidSelector());
+    Assert.assertFalse(map.getLocator("invalidPartialLinkTextSelector").hasValidSelector());
   }
 
   @Test(expectedExceptions = LocatorNotFoundException.class)
@@ -108,8 +113,30 @@ public class UIMapperTest {
   }
 
   @Test
+  public void testThis() {
+    Locator locator = new Locator();
+    Assert.assertEquals(locator.getName(), null);
+    Assert.assertTrue(locator.getAdditionalProperties().isEmpty());
+    Assert.assertEquals(locator.getSelector(), null);
+    Assert.assertEquals(locator.getMethod(), null);
+    locator.setMethod(Method.ID);
+    Assert.assertFalse(locator.hasValidSelector());
+  }
+
+  @Test
+  public void testThisToo() {
+    Locator locator = new Locator();
+    Assert.assertEquals(locator.getName(), null);
+    Assert.assertTrue(locator.getAdditionalProperties().isEmpty());
+    Assert.assertEquals(locator.getSelector(), null);
+    Assert.assertEquals(locator.getMethod(), null);
+    locator.setMethod(Method.ID);
+    Assert.assertFalse(locator.hasValidSelector());
+  }
+
+  @Test
   public void testGetLocators() throws IOException {
-    Assert.assertEquals(map.getLocators().size(), 9);
+    Assert.assertEquals(map.getLocators().size(), 14);
   }
 
 }
